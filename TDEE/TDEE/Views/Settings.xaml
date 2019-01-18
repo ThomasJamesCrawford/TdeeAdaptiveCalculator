@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TDEE.Converters"
+             x:Class="TDEE.Views.Settings">
+    
+    <ContentPage.Resources>
+        <local:BoolToUnitConverter x:Key="BoolToUnitConverterKey"/>
+        <local:DoubleToStringConverter x:Key="DoubleToStringConverterKey"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Label VerticalOptions="Center"
+                       Text="Units"/>
+                <Switch Grid.Column="1"
+                        IsToggled="{Binding Metric, Mode=TwoWay}"
+                        VerticalOptions="Center"/>
+                <Label Grid.Column="2"
+                       Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}}"
+                       VerticalOptions="Center"/>
+
+                <Label Grid.Row="1"
+                       Text="Goal Weight"
+                       VerticalOptions="Center"/>
+                <Entry Grid.Row="1" Grid.Column="1"
+                       VerticalOptions="Center"
+                       Keyboard="Numeric"
+                       Text="{Binding GoalWeight, Converter={StaticResource DoubleToStringConverterKey}}"/>
+
+                <Label Grid.Row="2"
+                       Text="Weeks in TDEE Avg"
+                       VerticalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="1"
+                       VerticalOptions="Center"
+                       Text="{Binding WeeksInAvg}"/>
+                <Stepper Grid.Row="2" Grid.Column="2"
+                         VerticalOptions="Center"
+                         Value="{Binding WeeksInAvg}"/>
+
+                <Label Grid.Row="3"
+                       VerticalOptions="Center"
+                       Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}, StringFormat='Cal per \{0\}'}"/>
+                <Entry Grid.Row="3" Grid.Column="2"
+                       VerticalOptions="Center"
+                       Keyboard="Numeric"
+                       Text="{Binding CaloriesPerUnit, Converter={StaticResource DoubleToStringConverterKey}}"/>
+
+                <Button Grid.Row="4"
+                        VerticalOptions="Center"
+                        Text="Reset to Defaults"
+                        Command="{Binding ResetDefaults}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

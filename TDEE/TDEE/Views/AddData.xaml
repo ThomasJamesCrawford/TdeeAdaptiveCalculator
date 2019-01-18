@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TDEE.AddData">
+    
+    <ContentPage.Content>
+        <StackLayout Padding="0, 20, 0, 0">
+            <Label Text="Enter KCAL, KG or Both" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Grid Padding="20, 20, 20, 20">
+                <Label Grid.Row="0" Grid.Column="0" Text="Date" FontSize="Large" VerticalOptions="Center" />
+
+                <DatePicker Grid.Row="0" Grid.Column="1" 
+                            VerticalOptions="Center" 
+                            Date="{Binding Date, Mode=TwoWay}"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Weight" FontSize="Large" VerticalOptions="Center"/>
+
+                <Entry Grid.Row="1" Grid.Column="1" 
+                       Placeholder="{Binding WeightPlaceholder}" 
+                       Keyboard="Numeric" 
+                       VerticalOptions="Center" 
+                       Text="{Binding Weight, Mode=TwoWay}"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Calories" FontSize="Large" VerticalOptions="Center"/>
+
+                <Entry Grid.Row="2" Grid.Column="1" 
+                       Placeholder="KCAL" 
+                       Keyboard="Numeric" 
+                       VerticalOptions="Center" 
+                       Text="{Binding Cal, Mode=TwoWay}"/>
+            </Grid>
+
+            <Button Text="Submit"
+                    VerticalOptions="Center" 
+                    Command="{Binding SubmitCommand}}"/>
+
+
+            <Grid Padding="20, 20, 20, 20">
+                <Label Grid.Column="1" Grid.Row="0"
+                    Text="{Binding LabelText}"
+                    VerticalOptions="Center"/>
+                <Label Grid.Column="0" Grid.Row="0"
+                    Text="Current TDEE: "
+                    VerticalOptions="Center"/>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
