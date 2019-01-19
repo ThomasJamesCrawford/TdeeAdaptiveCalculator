@@ -11,7 +11,7 @@
 
                 <DatePicker Grid.Row="0" Grid.Column="1" 
                             VerticalOptions="Center" 
-                            Date="{Binding Date, Mode=TwoWay}"/>
+                            Date="{Binding Date}"/>
 
                 <Label Grid.Row="1" Grid.Column="0" Text="Weight" FontSize="Large" VerticalOptions="Center"/>
 
@@ -19,7 +19,7 @@
                        Placeholder="{Binding WeightPlaceholder}" 
                        Keyboard="Numeric" 
                        VerticalOptions="Center" 
-                       Text="{Binding Weight, Mode=TwoWay}"/>
+                       Text="{Binding Weight}"/>
 
                 <Label Grid.Row="2" Grid.Column="0" Text="Calories" FontSize="Large" VerticalOptions="Center"/>
 
@@ -27,12 +27,12 @@
                        Placeholder="KCAL" 
                        Keyboard="Numeric" 
                        VerticalOptions="Center" 
-                       Text="{Binding Cal, Mode=TwoWay}"/>
+                       Text="{Binding Cal}"/>
             </Grid>
 
             <Button Text="Submit"
                     VerticalOptions="Center" 
-                    Command="{Binding SubmitCommand}}"/>
+                    Command="{Binding SubmitCommand}"/>
 
 
             <Grid Padding="20, 20, 20, 20">

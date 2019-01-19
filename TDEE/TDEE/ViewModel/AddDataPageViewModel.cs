@@ -106,6 +106,9 @@ namespace TDEE
 
                 App.UpdateItems();
                 LabelText = Tdee_Math.Get_Tdee().ToString();
+                Weight = "";
+                Cal = "";
+                
             }
             catch (Exception exc)
             {
