@@ -24,6 +24,13 @@ namespace TDEE
 
             masterPageItems.Add(new MasterPageItem
             {
+                Title = "Set your goal",
+                IconSource = "contacts.png",
+                TargetType = typeof(Goal)
+            });
+
+            masterPageItems.Add(new MasterPageItem
+            {
                 Title = "Tdee Graph",
                 IconSource = "todo.png",
                 TargetType = typeof(TdeeGraph)

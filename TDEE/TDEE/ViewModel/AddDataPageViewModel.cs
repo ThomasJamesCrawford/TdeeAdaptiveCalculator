@@ -24,8 +24,8 @@ namespace TDEE
             }
         }
 
-        private String _cal;
-        public String Cal
+        private string _cal;
+        public string Cal
         {
             get
             {
@@ -38,8 +38,8 @@ namespace TDEE
             }
         }
 
-        private String _weight;
-        public String Weight
+        private string _weight;
+        public string Weight
         {
             get
             {
@@ -66,8 +66,8 @@ namespace TDEE
             }
         }
 
-        private String _weightPlaceholder;
-        public String WeightPlaceholder
+        private string _weightPlaceholder;
+        public string WeightPlaceholder
         {
             get
             {
@@ -93,8 +93,8 @@ namespace TDEE
         {
             try
             {
-                Double.TryParse(Weight, out double w);
-                Double.TryParse(Cal, out double c);
+                double.TryParse(Weight, out double w);
+                double.TryParse(Cal, out double c);
 
                 await App.Database.SaveItemAsync(
                     new TodoItem()

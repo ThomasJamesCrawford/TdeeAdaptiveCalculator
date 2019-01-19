@@ -8,8 +8,8 @@ namespace TDEE
     public class TodoItem
     {
         
-        public Double Weight { get; set; }
-        public Double Calories { get; set; }
+        public double Weight { get; set; }
+        public double Calories { get; set; }
 
         [PrimaryKey, Column("Date")]
         public DateTime Date { get; set; }

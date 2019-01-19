@@ -22,6 +22,12 @@ namespace TDEE
             set => AppSettings.AddOrUpdateValue(nameof(GoalWeight), value);
         }
 
+        public static double GoalRate
+        {
+            get => AppSettings.GetValueOrDefault(nameof(GoalRate), 0.0);
+            set => AppSettings.AddOrUpdateValue(nameof(GoalRate), value);
+        }
+
         public static int WeeksInAvg
         {
             get => AppSettings.GetValueOrDefault(nameof(WeeksInAvg), 6);

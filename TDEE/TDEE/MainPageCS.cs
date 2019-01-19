@@ -22,7 +22,7 @@ namespace TDEE
             masterPage.ListView.ItemSelected += OnItemSelected;
         }
 
-        void OnItemSelected (Object sender, SelectedItemChangedEventArgs e)
+        void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MasterPageItem;
             if (item != null)

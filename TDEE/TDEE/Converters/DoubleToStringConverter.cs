@@ -16,7 +16,7 @@ namespace TDEE.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Double.TryParse((string)value, out double d) ? d : 0;
+            return double.TryParse((string)value, out double d) ? d : 0;
         }
     }
 }
