@@ -16,6 +16,7 @@
             <Entry Text="{Binding GoalRate, Converter={StaticResource DoubleToStringConverterKey}}"
                    VerticalOptions="Center"
                    HorizontalOptions="FillAndExpand"/>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

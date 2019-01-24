@@ -80,6 +80,14 @@ namespace TDEE
             }
         }
 
+        public float WeeksToGoal
+        {
+            get
+            {
+                return (UserSettings.GoalWeight - new WeightData.Weeks.ElementAt(w.Count - 1).AvgWeight()) / UserSettings.GoalRate;
+            }
+        }
+
         public AddDataPageViewModel()
         {
             Date = DateTime.Now;

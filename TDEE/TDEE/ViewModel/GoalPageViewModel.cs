@@ -36,13 +36,6 @@ namespace TDEE
             }
         }
 
-
-        public GoalPageViewModel()
-        {
-
-        }
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
