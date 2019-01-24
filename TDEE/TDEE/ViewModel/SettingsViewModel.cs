@@ -25,19 +25,6 @@ namespace TDEE.ViewModel
             }
         }
 
-        public double GoalWeight
-        {
-            get
-            {
-                return UserSettings.GoalWeight;
-            }
-            set
-            {
-                UserSettings.GoalWeight = value;
-                OnPropertyChanged("GoalWeight");
-            }
-        }
-
         public int WeeksInAvg
         {
             get
@@ -67,7 +54,6 @@ namespace TDEE.ViewModel
         public SettingsViewModel()
         {
             Metric = UserSettings.Metric;
-            GoalWeight = UserSettings.GoalWeight;
             WeeksInAvg = UserSettings.WeeksInAvg;
             CaloriesPerUnit = UserSettings.CaloriesPerUnit;
         }
@@ -79,7 +65,6 @@ namespace TDEE.ViewModel
             UserSettings.ClearAllData();
             OnPropertyChanged("CaloriesPerUnit");
             OnPropertyChanged("WeeksInAvg");
-            OnPropertyChanged("GoalWeight");
             OnPropertyChanged("Metric");
         }
 

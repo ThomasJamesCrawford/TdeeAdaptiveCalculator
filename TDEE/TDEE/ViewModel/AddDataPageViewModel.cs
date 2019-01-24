@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Windows.Input;
@@ -82,9 +83,20 @@ namespace TDEE
 
         public float WeeksToGoal
         {
+            get => CalcWeeksToGoal();
+        }
+
+        private double _sevenDayWeight;
+        public double SevenDayWeight
+        {
             get
             {
-                return (UserSettings.GoalWeight - new WeightData.Weeks.ElementAt(w.Count - 1).AvgWeight()) / UserSettings.GoalRate;
+                return _sevenDayWeight;
+            }
+            set
+            {
+                _sevenDayWeight = value;
+                OnPropertyChanged("SevenDayWeight");
             }
         }
 
@@ -122,6 +134,33 @@ namespace TDEE
             {
                 Console.WriteLine(exc.ToString());
             }
+        }
+
+        private float CalcWeeksToGoal()
+        {
+            WeightData w = new WeightData();
+
+            if (w.Weeks.List.Count == 0)
+            {
+                return 0;
+            }
+
+            SevenDayWeight = w.Weights.SevenDayAvg();
+
+            // lighter than goal weight and aiming to increase weight
+            if (UserSettings.GoalWeight > SevenDayWeight && UserSettings.GoalRate > 0)
+            {
+                return (float)((UserSettings.GoalWeight - SevenDayWeight) / UserSettings.GoalRate);
+            }
+
+            // heavier than goal weight and aiming to lose weight
+            if (UserSettings.GoalWeight < SevenDayWeight && UserSettings.GoalRate < 0)
+            {
+                return (float)((SevenDayWeight - UserSettings.GoalWeight) / UserSettings.GoalRate);
+            }
+
+            return 0;
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

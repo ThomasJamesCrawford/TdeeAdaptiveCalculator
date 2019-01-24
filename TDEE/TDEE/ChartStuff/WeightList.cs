@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace TDEE
@@ -63,6 +64,36 @@ namespace TDEE
             }
 
             return d;
+        }
+
+        public double SevenDayAvg()
+        {
+            if (List.Count == 0)
+            {
+                return 0;
+            }
+
+            double sum = 0;
+            int count = 0;
+
+            DateTime range = List.ElementAt(List.Count - 1).Date.AddDays(-7);
+
+            for (int i = List.Count - 1; i >= 0; i--)
+            {
+                TodoItem td = List.ElementAt(i);
+
+                if (td.Date > range)
+                {
+                    sum += td.Weight;
+                    count++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            return sum / count;
         }
     }
 }

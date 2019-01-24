@@ -34,7 +34,7 @@ namespace Tests
        }
 
         [Test]
-        public void Test1()
+        public void BasicTest()
         {
             WeightList wl = new WeightList(items, new DateTime(2019, 1, 8));
 
@@ -50,6 +50,14 @@ namespace Tests
               });
 
             wl.List.Should().BeEquivalentTo(expected);
+        }
+
+        [Test]
+        public void SevenDayAvgTest()
+        {
+            WeightList wl = new WeightList(items);
+
+            Assert.AreEqual(93.42857142, wl.SevenDayAvg(), 0.01);
         }
     }
 }
