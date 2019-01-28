@@ -11,17 +11,17 @@ namespace TDEE
 {
     class AddDataPageViewModel : INotifyPropertyChanged
     {
-        private string _labelText;
-        public string LabelText
+        private float _currentTdee;
+        public float CurrentTdee
         {
             get
             {
-                return _labelText;
+                return _currentTdee;
             }
             set
             {
-                _labelText = value;
-                OnPropertyChanged("LabelText");
+                _currentTdee = value;
+                OnPropertyChanged("CurrentTdee");
             }
         }
 
@@ -84,10 +84,15 @@ namespace TDEE
         public float WeeksToGoal
         {
             get => CalcWeeksToGoal();
+            set
+            {
+                OnPropertyChanged("WeeksToGoal");
+            }
         }
 
-        private double _sevenDayWeight;
-        public double SevenDayWeight
+
+        private float _sevenDayWeight;
+        public float SevenDayWeight
         {
             get
             {
@@ -100,10 +105,18 @@ namespace TDEE
             }
         }
 
+        public float TargetCal
+        {
+            get
+            {
+                return (float)(CurrentTdee + UserSettings.CaloriesPerUnit * UserSettings.GoalRate / 7);
+            }
+        }
+
         public AddDataPageViewModel()
         {
             Date = DateTime.Now;
-            LabelText = Tdee_Math.Get_Tdee().ToString();
+            CurrentTdee = (float)Tdee_Math.Get_Tdee();
             WeightPlaceholder = UserSettings.Metric ? "KGS" : "LBS";
         }
 
@@ -125,10 +138,12 @@ namespace TDEE
                     });
 
                 App.UpdateItems();
-                LabelText = Tdee_Math.Get_Tdee().ToString();
+                CurrentTdee = (float)Tdee_Math.Get_Tdee();
                 Weight = "";
                 Cal = "";
-                
+                OnPropertyChanged("SevenDayWeight");
+                OnPropertyChanged("WeeksToGoal");
+
             }
             catch (Exception exc)
             {
@@ -145,7 +160,7 @@ namespace TDEE
                 return 0;
             }
 
-            SevenDayWeight = w.Weights.SevenDayAvg();
+            SevenDayWeight = (float)w.Weights.SevenDayAvg();
 
             // lighter than goal weight and aiming to increase weight
             if (UserSettings.GoalWeight > SevenDayWeight && UserSettings.GoalRate > 0)
@@ -160,7 +175,6 @@ namespace TDEE
             }
 
             return 0;
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

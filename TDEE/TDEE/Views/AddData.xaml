@@ -1,59 +1,88 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TDEE.Converters"
              x:Class="TDEE.AddData">
-    
-    <ContentPage.Content>
-        <StackLayout Padding="0, 20, 0, 0">
-            <Label Text="Enter KCAL, KG or Both" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
-            <Grid Padding="20, 20, 20, 20">
-                <Label Grid.Row="0" Grid.Column="0" Text="Date" FontSize="Large" VerticalOptions="Center" />
+    <ContentPage.Resources>
+        <local:FloatTo2DecimalPlaceConverter x:Key="FloatTo2DecimalPlaceConverterKey"/>
+        <local:DoubleToGoalConverter x:Key="DoubleToGoalConverterKey"/>
+    </ContentPage.Resources>
 
-                <DatePicker Grid.Row="0" Grid.Column="1" 
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Frame OutlineColor="DarkGray">
+            <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                
+                <Label Grid.ColumnSpan="2" TextColor="Black" Text="Add Weight and/or Cals" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Date" FontSize="Large" VerticalOptions="Center" />
+
+                <DatePicker Grid.Row="1" Grid.Column="1" 
                             VerticalOptions="Center" 
                             Date="{Binding Date}"/>
 
-                <Label Grid.Row="1" Grid.Column="0" Text="Weight" FontSize="Large" VerticalOptions="Center"/>
+                <Label Grid.Row="2" Grid.Column="0" Text="Weight" FontSize="Large" VerticalOptions="Center"/>
 
-                <Entry Grid.Row="1" Grid.Column="1" 
+                <Entry Grid.Row="2" Grid.Column="1" 
                        Placeholder="{Binding WeightPlaceholder}" 
                        Keyboard="Numeric" 
                        VerticalOptions="Center" 
                        Text="{Binding Weight}"/>
 
-                <Label Grid.Row="2" Grid.Column="0" Text="Calories" FontSize="Large" VerticalOptions="Center"/>
+                <Label Grid.Row="3" Grid.Column="0" Text="Calories" FontSize="Large" VerticalOptions="Center"/>
 
-                <Entry Grid.Row="2" Grid.Column="1" 
+                <Entry Grid.Row="3" Grid.Column="1" 
                        Placeholder="KCAL" 
                        Keyboard="Numeric" 
                        VerticalOptions="Center" 
                        Text="{Binding Cal}"/>
-            </Grid>
-
-            <Button Text="Submit"
+                
+                <Button Grid.ColumnSpan="2" Grid.Row="4"
+                    Text="Add"
                     VerticalOptions="Center" 
                     Command="{Binding SubmitCommand}"/>
+                
+                </Grid>
+            </Frame>
 
-
-            <Grid Padding="20, 20, 20, 20">
+            <Frame OutlineColor="DarkGray">
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
                 <Label Grid.Column="1" Grid.Row="0"
-                    Text="{Binding LabelText}"
+                    Text="{Binding CurrentTdee, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
                     VerticalOptions="Center"/>
                 <Label Grid.Column="0" Grid.Row="0"
                     Text="Current TDEE: "
                     VerticalOptions="Center"/>
                 <Label Grid.Row="1" Grid.Column="1"
-                       Text="{Binding WeeksToGoal}"
+                       Text="{Binding TargetCal, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
                        VerticalOptions="Center"/>
                 <Label Grid.Row="1" Grid.Column="0"
-                       Text="Weeks Until Goal: "/>
+                       Text="Target Daily Cal: "/>
                 <Label Grid.Row="2" Grid.Column="1"
-                       Text="{Binding SevenDayWeight}"
+                       Text="{Binding WeeksToGoal, Converter={StaticResource DoubleToGoalConverterKey}}"
                        VerticalOptions="Center"/>
                 <Label Grid.Row="2" Grid.Column="0"
-                       Text="Current Weight: "/>
-            </Grid>
+                       Text="Weeks Until Goal: "/>
+                <Label Grid.Row="3" Grid.Column="1"
+                       Text="{Binding SevenDayWeight, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
+                       VerticalOptions="Center"/>
+                <Label Grid.Row="3" Grid.Column="0"
+                       Text="Current Weight (7DayAvg): "/>
 
+            </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

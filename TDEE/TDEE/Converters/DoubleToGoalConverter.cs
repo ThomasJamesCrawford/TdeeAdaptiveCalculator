@@ -6,17 +6,17 @@ using Xamarin.Forms;
 
 namespace TDEE.Converters
 {
-    public class DoubleToStringConverter : IValueConverter
+    public class DoubleToGoalConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
 
-            return (double)value == 0 ? "" : Math.Round((double)value, 2).ToString();
+            return (float)value == 0 ? "Set new goal" : Math.Round((float)value, 2).ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return double.TryParse((string)value, out double d) ? d : 0;
+            throw new NotImplementedException();
         }
     }
 }

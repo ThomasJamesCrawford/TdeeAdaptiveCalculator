@@ -10,21 +10,19 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
+        <StackLayout Padding="10">
+            <Frame OutlineColor="DarkGray">
+            <Grid Padding="10">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
                 <Label VerticalOptions="Center"
                        Text="Units"/>
                 <Switch Grid.Column="1"
@@ -33,34 +31,32 @@
                 <Label Grid.Column="2"
                        Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}}"
                        VerticalOptions="Center"/>
-
                 <Label Grid.Row="1"
-                       Text="Goal Weight"
-                       VerticalOptions="Center"/>
-
-                <Label Grid.Row="2"
                        Text="Weeks in TDEE Avg"
                        VerticalOptions="Center"/>
-                <Label Grid.Row="2" Grid.Column="1"
+                <Label Grid.Row="1" Grid.Column="1"
                        VerticalOptions="Center"
-                       Text="{Binding WeeksInAvg}"/>
-                <Stepper Grid.Row="2" Grid.Column="2"
+                       Text="{Binding WeeksInAvg}"
+                       HorizontalOptions="Center"/>
+                <Stepper Grid.Row="1" Grid.Column="2"
                          VerticalOptions="Center"
                          Value="{Binding WeeksInAvg}"/>
 
-                <Label Grid.Row="3"
+                <Label Grid.Row="2"
                        VerticalOptions="Center"
                        Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}, StringFormat='Cal per \{0\}'}"/>
-                <Entry Grid.Row="3" Grid.Column="2"
+                <Entry Grid.Row="2" Grid.Column="2"
                        VerticalOptions="Center"
                        Keyboard="Numeric"
                        Text="{Binding CaloriesPerUnit, Converter={StaticResource DoubleToStringConverterKey}}"/>
 
-                <Button Grid.Row="4"
+                <Button Grid.Row="3" Grid.ColumnSpan="3"
                         VerticalOptions="Center"
                         Text="Reset to Defaults"
+                        HorizontalOptions="Fill"
                         Command="{Binding ResetDefaults}"/>
             </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

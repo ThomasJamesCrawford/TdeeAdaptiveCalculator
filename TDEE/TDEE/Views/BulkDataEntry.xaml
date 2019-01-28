@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TDEE.BulkDataEntry">
     <ContentPage.Content>
-        <StackLayout>
+        <Frame OutlineColor="DarkGray" Padding="10">
+            <StackLayout>
             <DatePicker x:Name="DatePicker"/>
             <Editor x:Name="TextBox"
                     VerticalOptions="FillAndExpand"/>
             <Button Text="Add Data" Clicked="Button_Clicked"/>
-
-        </StackLayout>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

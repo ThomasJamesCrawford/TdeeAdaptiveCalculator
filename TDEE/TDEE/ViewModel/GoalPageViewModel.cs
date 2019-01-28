@@ -10,35 +10,58 @@ namespace TDEE
 {
     class GoalPageViewModel : INotifyPropertyChanged
     {
-        public double GoalWeight
+        private string _goalWeight;
+        public string GoalWeight
         {
             get
             {
-                return UserSettings.GoalWeight;
+                return _goalWeight;
             }
             set
             {
-                UserSettings.GoalWeight = value;
-                OnPropertyChanged("GoalWeight");
+                if (MyDouble.TryParse(value, out double d))
+                {
+                    UserSettings.GoalWeight = d;
+                    OnPropertyChanged("GoalWeight");
+                }
+
+                _goalWeight = value;
             }
         }
 
-        public double GoalRate
+        private string _goalRate;
+        public string GoalRate
         {
             get
             {
-                return UserSettings.GoalRate;
+                return _goalRate;
             }
             set
             {
-                UserSettings.GoalRate = value;
-                OnPropertyChanged("GoalRate");
+                if (MyDouble.TryParse(value, out double d))
+                {
+                    UserSettings.GoalRate = d;
+                    OnPropertyChanged("GoalRate");
+                }
+
+                _goalRate = value;
             }
+        }
+
+        public bool PlaceholderUnit
+        {
+            get => UserSettings.Metric;
+        }
+
+        public GoalPageViewModel()
+        {
+            GoalRate = UserSettings.GoalRate.ToString();
+            GoalWeight = UserSettings.GoalWeight.ToString();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        void OnPropertyChanged([CallerMemberName]string propertyName = "") =>
+        void OnPropertyChanged([CallerMemberName]string propertyName = "") => 
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }

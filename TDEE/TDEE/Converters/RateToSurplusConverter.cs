@@ -6,17 +6,16 @@ using Xamarin.Forms;
 
 namespace TDEE.Converters
 {
-    public class DoubleToStringConverter : IValueConverter
+    public class RateToSurplusConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
-            return (double)value == 0 ? "" : Math.Round((double)value, 2).ToString();
+            return MyDouble.TryParse((string)value, out double a) ? (a * UserSettings.CaloriesPerUnit / 7.0).ToString() : (string)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return double.TryParse((string)value, out double d) ? d : 0;
+            return MyDouble.TryParse((string)value, out double a) ? (a * 7.0 / UserSettings.CaloriesPerUnit).ToString() : (string)value;
         }
     }
 }
