@@ -115,7 +115,7 @@ namespace TDEE
 
         public AddDataPageViewModel()
         {
-            Date = DateTime.Now;
+            Date = DateTime.Now.Date;
             CurrentTdee = (float)Tdee_Math.Get_Tdee();
             WeightPlaceholder = UserSettings.Metric ? "KGS" : "LBS";
         }

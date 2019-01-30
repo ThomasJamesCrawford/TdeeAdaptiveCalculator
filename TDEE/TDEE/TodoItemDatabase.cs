@@ -42,7 +42,6 @@ namespace TDEE
                 {
                     item.Weight = dbItem.Weight;
                 }
-
                 await database.DeleteAsync<TodoItem>(dbItem.Date);
             }
 

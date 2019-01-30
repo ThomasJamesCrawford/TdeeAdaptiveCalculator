@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TDEE.Views.SpreadsheetView">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" SeparatorColor="Black">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Command="{Binding Edit}" CommandParameter="{Binding .}"
+                                          Text="Edit"/>
+                                <MenuItem Command="{Binding Delete}" CommandParameter="{Binding .}"
+                                          Text="Delete"
+                                          IsDestructive="True"/>
+                                <ToolbarItem Text="Toolbar"/>
+                            </ViewCell.ContextActions>
+                            <Grid>
+                                <Label Grid.Column="1" 
+                                    Text="{Binding Weight}" 
+                                    VerticalOptions="Center"/>
+
+                                <Label Grid.Column="2"
+                                    Text="{Binding Calories}" 
+                                    VerticalOptions="Center"/>
+                                
+                                <Label Grid.Column="0"
+                                    Text="{Binding Date, StringFormat='\{0:d MMM yy\}'}" 
+                                    VerticalOptions="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

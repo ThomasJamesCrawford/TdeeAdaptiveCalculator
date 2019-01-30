@@ -17,6 +17,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                 
                 <Label Grid.ColumnSpan="2" TextColor="Black" Text="Add Weight and/or Cals" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />

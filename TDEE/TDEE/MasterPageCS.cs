@@ -24,6 +24,13 @@ namespace TDEE
 
             masterPageItems.Add(new MasterPageItem
             {
+                Title = "Edit Data",
+                IconSource = "todo.png",
+                TargetType = typeof(SpreadsheetView)
+            });
+
+            masterPageItems.Add(new MasterPageItem
+            {
                 Title = "Set your goal",
                 IconSource = "contacts.png",
                 TargetType = typeof(Goal)

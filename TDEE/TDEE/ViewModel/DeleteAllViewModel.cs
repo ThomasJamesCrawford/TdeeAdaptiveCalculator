@@ -28,5 +28,7 @@ namespace TDEE
                 await App.Database.DeleteAll();
             }
         }
+
+
     }
 }
