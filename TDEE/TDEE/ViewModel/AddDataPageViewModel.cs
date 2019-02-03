@@ -118,6 +118,9 @@ namespace TDEE
             Date = DateTime.Now.Date;
             CurrentTdee = (float)Tdee_Math.Get_Tdee();
             WeightPlaceholder = UserSettings.Metric ? "KGS" : "LBS";
+
+            Weight = "";
+            Cal = "";
         }
 
         public ICommand SubmitCommand => new Command(() => AddToDatabase());
@@ -126,8 +129,8 @@ namespace TDEE
         {
             try
             {
-                double.TryParse(Weight, out double w);
-                double.TryParse(Cal, out double c);
+                MyDouble.TryParse(Weight, out double w);
+                MyDouble.TryParse(Cal, out double c);
 
                 await App.Database.SaveItemAsync(
                     new TodoItem()
@@ -155,7 +158,7 @@ namespace TDEE
         {
             WeightData w = new WeightData();
 
-            if (w.Weeks.List.Count == 0)
+            if (w.Weeks.List.Count == 0 || UserSettings.GoalWeight < 0)
             {
                 return 0;
             }

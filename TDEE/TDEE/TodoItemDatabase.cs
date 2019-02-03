@@ -33,24 +33,38 @@ namespace TDEE
             
             if (dbItem != null && item != null)
             {
-                if (item.Calories == 0)
+                if (item.Calories == -1)
                 {
                     item.Calories = dbItem.Calories;
                 }
 
-                if (item.Weight == 0)
+                if (item.Weight == -1)
                 {
                     item.Weight = dbItem.Weight;
                 }
+                await database.DeleteAsync<TodoItem>(dbItem.Date);
+            }
+            Console.WriteLine("INSERT");
+            return await database.InsertAsync(item);
+        }
+
+        public async Task<int> SaveCompleteItemAsync(TodoItem item)
+        {
+            TodoItem dbItem = database.FindAsync<TodoItem>(item.Date).Result;
+
+            if (dbItem != null && item != null)
+            {
                 await database.DeleteAsync<TodoItem>(dbItem.Date);
             }
 
             return await database.InsertAsync(item);
         }
 
-        public Task<int> DeleteItemAsync(TodoItem item)
+        public async Task<int> DeleteItemAsync(TodoItem item)
         {
-            return database.DeleteAsync(item);
+            Console.WriteLine("DELETE");
+
+            return await database.DeleteAsync<TodoItem>(item.Date);
         }
 
         public Task<int> DeleteAll()

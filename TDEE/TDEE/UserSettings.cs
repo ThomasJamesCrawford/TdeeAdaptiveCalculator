@@ -28,12 +28,6 @@ namespace TDEE
             set => AppSettings.AddOrUpdateValue(nameof(GoalRate), value);
         }
 
-        public static double CalSurplus
-        {
-            get => GoalRate * CaloriesPerUnit / 7.0;
-            set => GoalRate = value * 7.0 / CaloriesPerUnit;
-        }
-
         public static int WeeksInAvg
         {
             get => AppSettings.GetValueOrDefault(nameof(WeeksInAvg), 6);

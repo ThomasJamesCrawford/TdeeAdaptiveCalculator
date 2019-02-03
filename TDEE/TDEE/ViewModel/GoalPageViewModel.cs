@@ -19,7 +19,7 @@ namespace TDEE
             }
             set
             {
-                if (MyDouble.TryParse(value, out double d))
+                if (MyDouble.TryParse0(value, out double d))
                 {
                     UserSettings.GoalWeight = d;
                     OnPropertyChanged("GoalWeight");
@@ -38,13 +38,32 @@ namespace TDEE
             }
             set
             {
-                if (MyDouble.TryParse(value, out double d))
+                if (MyDouble.TryParse0(value, out double d))
                 {
                     UserSettings.GoalRate = d;
-                    OnPropertyChanged("GoalRate");
+                    SetGoals();
                 }
 
                 _goalRate = value;
+            }
+        }
+
+        private string _surplus;
+        public string Surplus
+        {
+            get
+            {
+                return _surplus;
+            }
+            set
+            {
+                if (MyDouble.TryParse0(value, out double d))
+                {
+                    UserSettings.GoalRate = d * 7.0 / UserSettings.CaloriesPerUnit;
+                    SetGoals();
+                }
+
+                _surplus = value;
             }
         }
 
@@ -55,8 +74,17 @@ namespace TDEE
 
         public GoalPageViewModel()
         {
-            GoalRate = UserSettings.GoalRate.ToString();
-            GoalWeight = UserSettings.GoalWeight.ToString();
+            GoalRate = UserSettings.GoalRate == 0 ? "" : UserSettings.GoalRate.ToString();
+            GoalWeight = UserSettings.GoalWeight > 0 ? UserSettings.GoalWeight.ToString() : "";
+            Surplus = Math.Round(UserSettings.GoalRate * UserSettings.CaloriesPerUnit / 7) == 0 ? "" : Math.Round(UserSettings.GoalRate * UserSettings.CaloriesPerUnit / 7).ToString();
+        }
+
+        private void SetGoals()
+        {
+            _goalRate = UserSettings.GoalRate == 0 ? "" : UserSettings.GoalRate.ToString();
+            _surplus = Math.Round(UserSettings.GoalRate * UserSettings.CaloriesPerUnit / 7) == 0 ? "" : Math.Round(UserSettings.GoalRate * UserSettings.CaloriesPerUnit / 7).ToString();
+            OnPropertyChanged("Surplus");
+            OnPropertyChanged("GoalRate");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

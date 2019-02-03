@@ -21,7 +21,7 @@
                        HorizontalOptions="FillAndExpand"
                        Grid.Column="1"
                        VerticalOptions="Center"
-                       Placeholder="{Binding PlaceholderUnit, Converter={StaticResource BoolToUnitConverterKey}, StringFormat='\{0\} per W'}"
+                       Placeholder="{Binding PlaceholderUnit, Converter={StaticResource BoolToUnitConverterKey}}"
                        Keyboard="Numeric"/>
 
                     <Label Grid.Row="1" Text="Goal Rate: "
@@ -33,10 +33,10 @@
                        Grid.Row="1"
                        VerticalOptions="Center"
                        Keyboard="Numeric"
-                       Placeholder="{Binding PlaceholderUnit, Converter={StaticResource BoolToUnitConverterKey}}"/>
+                       Placeholder="{Binding PlaceholderUnit, Converter={StaticResource BoolToUnitConverterKey}, StringFormat='\{0\} per W'}"/>
 
                     <Label Grid.Row="2" Text="Daily Surplus: " FontSize="Large" VerticalOptions="Center"/>
-                    <Entry Text="{Binding GoalRate, Converter={StaticResource RateToSurplusConverterKey}}"
+                    <Entry Text="{Binding Surplus}"
                        HorizontalOptions="FillAndExpand"
                        Grid.Column="1"
                        Grid.Row="2"

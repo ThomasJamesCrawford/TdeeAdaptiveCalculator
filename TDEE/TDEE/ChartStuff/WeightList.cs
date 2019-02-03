@@ -18,7 +18,7 @@ namespace TDEE
 
             foreach (TodoItem i in items)
             {
-                if (i.Weight != 0)
+                if (i.Weight > 0)
                 {
                     List.Add(i);
                 }

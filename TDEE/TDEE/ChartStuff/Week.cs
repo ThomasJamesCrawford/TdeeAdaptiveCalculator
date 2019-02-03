@@ -38,7 +38,7 @@ namespace TDEE
 
         public void AddWeight (double weight)
         {
-            if (weight > 0 )
+            if (weight > -1 )
             {
                 WeightCount++;
                 Weight += weight;
@@ -48,7 +48,7 @@ namespace TDEE
 
         public void AddCal (double cal)
         {
-            if (cal > 0)
+            if (cal > -1)
             {
                 CalCount++;
                 Cal += cal;

@@ -1,38 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TDEE.Converters"
              x:Class="TDEE.Views.SpreadsheetView">
+    <ContentPage.Resources>
+        <local:DoubleToStringWithNilAlert x:Key="BoolToUnitConverterKey"/>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout Padding="10">
-            <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" SeparatorColor="Black">
+            <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" SeparatorColor="Black" SelectedItem="{Binding SelectedItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Command="{Binding Edit}" CommandParameter="{Binding .}"
-                                          Text="Edit"/>
-                                <MenuItem Command="{Binding Delete}" CommandParameter="{Binding .}"
-                                          Text="Delete"
-                                          IsDestructive="True"/>
-                                <ToolbarItem Text="Toolbar"/>
-                            </ViewCell.ContextActions>
-                            <Grid>
-                                <Label Grid.Column="1" 
-                                    Text="{Binding Weight}" 
-                                    VerticalOptions="Center"/>
-
-                                <Label Grid.Column="2"
-                                    Text="{Binding Calories}" 
-                                    VerticalOptions="Center"/>
-                                
-                                <Label Grid.Column="0"
+                            <StackLayout Orientation="Horizontal">
+                                <Label 
                                     Text="{Binding Date, StringFormat='\{0:d MMM yy\}'}" 
-                                    VerticalOptions="Center"/>
-                            </Grid>
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="StartAndExpand"/>
+                                
+                                <Label 
+                                    Text="{Binding Weight, Converter={StaticResource BoolToUnitConverterKey}}" 
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="StartAndExpand"/>
+
+                                <Label 
+                                    Text="{Binding Calories, Converter={StaticResource BoolToUnitConverterKey}}" 
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="StartAndExpand"/>
+                            </StackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Frame>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label 
+                            Text="{Binding SelectedItem.Date, StringFormat='\{0:d MMM yy\}'}" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="Center"/>
+
+                        <Entry 
+                            Text="{Binding SelectedItem.Weight, Converter={StaticResource BoolToUnitConverterKey}}" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Numeric"
+                            Placeholder="{Binding WeightPlaceholder}"/>
+
+                        <Entry 
+                            Text="{Binding SelectedItem.Calories, Converter={StaticResource BoolToUnitConverterKey}}" 
+                            VerticalOptions="Center"
+                            HorizontalOptions="FillAndExpand"
+                            Keyboard="Numeric"
+                            Placeholder="KCAL"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Button Text="Delete"
+                                Command="{Binding Delete}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"/>
+                        
+                        <Button Text="Save"
+                                Command="{Binding Save}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

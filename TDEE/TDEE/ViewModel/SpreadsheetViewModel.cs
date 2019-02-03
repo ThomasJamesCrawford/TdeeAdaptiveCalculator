@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -25,34 +26,78 @@ namespace TDEE
             }
         }
 
+        private TodoItem _selectedItem;
+        public TodoItem SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+                OnPropertyChanged("SelectedItem");
+            }
+        }
+
+        public ICommand Delete => new Command(() => DeleteSelectedItem());
+
+        public ICommand Save => new Command(() => SaveSelectedItem());
+
+
+        private void DeleteSelectedItem()
+        {
+            if (_selectedItem != null)
+            {
+                Task<int> task = Task.Run(() => AsyncDeleteSelectedItem());
+                int r = task.Result;
+                App.UpdateItems();
+                RefreshItems();
+            }
+        }
+
+        private void SaveSelectedItem()
+        {
+            if (_selectedItem != null)
+            {
+                Task<int> task = Task.Run(() => AsyncSaveSelectedItem());
+                int r = task.Result;
+                RefreshItems();
+            }
+        }
+
+        public string WeightPlaceholder
+        {
+            get
+            {
+                return UserSettings.Metric ? "KGS" : "LBS";
+            }
+        }
+
+        private async Task<int> AsyncSaveSelectedItem()
+        {
+            return await App.Database.SaveCompleteItemAsync(SelectedItem);
+        }
+
+        private async Task<int> AsyncDeleteSelectedItem()
+        {
+            return await App.Database.DeleteItemAsync(SelectedItem);
+        }
+
         public SpreadsheetViewModel()
         {
-            Items = new ObservableCollection<TodoItem>();
+            RefreshItems();
+        }
+
+        private void RefreshItems()
+        {
+            ObservableCollection<TodoItem> items = new ObservableCollection<TodoItem>();
             App.Items.ForEach((i) =>
             {
-                Items.Insert(0, i);
+                items.Insert(0, i);
             });
 
-
-        }
-        public ICommand Delete => new Command((sender) => _delete((MenuItem)sender));
-
-        private void _delete(MenuItem i)
-        {
-            Console.WriteLine("gggggggg");
-
-            Console.WriteLine(i.CommandParameter);
-            Console.WriteLine(i);
-
-            Console.WriteLine("gggggggg");
-
-        }
-
-        public ICommand Edit => new Command((sender) => _edit((MenuItem)sender));
-
-        private void _edit(MenuItem i)
-        {
-
+            Items = items;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
