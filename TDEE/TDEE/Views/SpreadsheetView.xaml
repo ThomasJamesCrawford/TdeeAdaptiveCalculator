@@ -8,7 +8,7 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout Padding="10">
+        <StackLayout Padding="5">
             <ListView ItemsSource="{Binding Items}" HasUnevenRows="True" SeparatorColor="Black" SelectedItem="{Binding SelectedItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -33,7 +33,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Frame>
+            <Frame OutlineColor="LightGray">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label 
@@ -59,12 +59,16 @@
                         <Button Text="Delete"
                                 Command="{Binding Delete}"
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"/>
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="DodgerBlue"
+                                TextColor="White"/>
                         
                         <Button Text="Save"
                                 Command="{Binding Save}"
                                 VerticalOptions="Center"
-                                HorizontalOptions="FillAndExpand"/>
+                                HorizontalOptions="FillAndExpand"
+                                BackgroundColor="DodgerBlue"
+                                TextColor="White"/>
                     </StackLayout>
                 </StackLayout>
             </Frame>

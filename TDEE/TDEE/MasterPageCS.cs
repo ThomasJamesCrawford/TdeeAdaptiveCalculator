@@ -18,21 +18,21 @@ namespace TDEE
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Add Weight/Cal",
-                IconSource = "contacts.png",
+                IconSource = "plus.png",
                 TargetType = typeof(AddData)
             });
 
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Edit Data",
-                IconSource = "todo.png",
+                IconSource = "edit2.png",
                 TargetType = typeof(SpreadsheetView)
             });
 
             masterPageItems.Add(new MasterPageItem
             {
-                Title = "Set your goal",
-                IconSource = "contacts.png",
+                Title = "Set Goal",
+                IconSource = "goal2.png",
                 TargetType = typeof(Goal)
             });
 
@@ -46,28 +46,28 @@ namespace TDEE
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Weight Graph",
-                IconSource = "todo.png",
+                IconSource = "trash.svg",
                 TargetType = typeof(WeightGraph)
             });
 
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Clear Data",
-                IconSource = "todo.png",
+                IconSource = "trash.png",
                 TargetType = typeof(DeleteAll)
             });
 
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Add Bulk Data",
-                IconSource = "todo.png",
+                IconSource = "edit.png",
                 TargetType = typeof(BulkDataEntry)
             });
 
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Settings",
-                IconSource = "todo.png",
+                IconSource = "settings2.png",
                 TargetType = typeof(Settings)
             });
 

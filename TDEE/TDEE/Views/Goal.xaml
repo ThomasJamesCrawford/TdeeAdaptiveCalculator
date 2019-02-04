@@ -11,9 +11,9 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Frame OutlineColor="DarkGray">
-                <Grid Padding="10">
+        <StackLayout Padding="5">
+            <Frame OutlineColor="LightGray">
+                <Grid>
                     <Label Text="Goal Weight:"
                            VerticalOptions="Center"
                            FontSize="Large"/>
@@ -44,6 +44,12 @@
                        Keyboard="Numeric"
                        Placeholder="KCAL"/>
                 </Grid>
+            </Frame>
+            <Frame OutlineColor="LightGray">
+                <Label
+                    Text="Basic Recommendations &#10;Slow Gain: 220cal &#10;Bulk: 550cal &#10;Lose Weight: -550cal" 
+                    FontSize="Large"
+                />
             </Frame>
         </StackLayout>
     </ContentPage.Content>

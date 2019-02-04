@@ -10,9 +10,9 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Frame OutlineColor="DarkGray">
-            <Grid Padding="10">
+        <StackLayout Padding="5">
+            <Frame OutlineColor="LightGray">
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>

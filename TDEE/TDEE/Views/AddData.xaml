@@ -9,80 +9,120 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Frame OutlineColor="DarkGray">
-            <Grid Padding="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                
-                <Label Grid.ColumnSpan="2" TextColor="Black" Text="Add Weight and/or Cals" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+        <StackLayout Padding="5">
+            <Frame Padding="0" OutlineColor="LightGray">
+                <StackLayout Spacing="-1">
+                    <Frame Padding="10, 5, 10, 0" CornerRadius="0">
+                        <Label TextColor="Black" Text="Add Weight and/or Cals" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+                    </Frame>
 
-                <Label Grid.Row="1" Grid.Column="0" Text="Date" FontSize="Large" VerticalOptions="Center" />
-
-                <DatePicker Grid.Row="1" Grid.Column="1" 
+                    <Frame  Padding="10, 0, 10, 0" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Date:" FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                            <DatePicker
+                            HorizontalOptions="EndAndExpand"
                             VerticalOptions="Center" 
-                            Date="{Binding Date}"/>
+                            Date="{Binding Date}"
+                            x:Name="My_DatePicker"/>
+                        </StackLayout>
+                    </Frame>
 
-                <Label Grid.Row="2" Grid.Column="0" Text="Weight" FontSize="Large" VerticalOptions="Center"/>
-
-                <Entry Grid.Row="2" Grid.Column="1" 
+                    <Frame  Padding="10, 0, 10, 0" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Weight:" FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                            <Entry 
+                       WidthRequest="{Binding Width, Source={x:Reference My_DatePicker}}"
                        Placeholder="{Binding WeightPlaceholder}" 
                        Keyboard="Numeric" 
                        VerticalOptions="Center" 
+                       HorizontalOptions="EndAndExpand"
                        Text="{Binding Weight}"/>
+                        </StackLayout>
+                    </Frame>
 
-                <Label Grid.Row="3" Grid.Column="0" Text="Calories" FontSize="Large" VerticalOptions="Center"/>
-
-                <Entry Grid.Row="3" Grid.Column="1" 
+                    <Frame  Padding="10, 0, 10, 0" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Calories:" FontSize="Large" VerticalOptions="Center" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                            <Entry
                        Placeholder="KCAL" 
+                       WidthRequest="{Binding Width, Source={x:Reference My_DatePicker}}"
                        Keyboard="Numeric" 
                        VerticalOptions="Center" 
+                                   HorizontalOptions="EndAndExpand"
                        Text="{Binding Cal}"/>
-                
-                <Button Grid.ColumnSpan="2" Grid.Row="4"
-                    Text="Add"
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame  Padding="10" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Button
+                    Text="+ Add"
                     VerticalOptions="Center" 
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="DodgerBlue"
+                    BorderColor="LightGray"
+                    TextColor="White"          
                     Command="{Binding SubmitCommand}"/>
-                
-                </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
             </Frame>
 
-            <Frame OutlineColor="DarkGray">
-                <Grid Padding="10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                <Label Grid.Column="1" Grid.Row="0"
-                    Text="{Binding CurrentTdee, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
-                    VerticalOptions="Center"/>
-                <Label Grid.Column="0" Grid.Row="0"
-                    Text="Current TDEE: "
-                    VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.Column="1"
-                       Text="{Binding TargetCal, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.Column="0"
-                       Text="Target Daily Cal: "/>
-                <Label Grid.Row="2" Grid.Column="1"
-                       Text="{Binding WeeksToGoal, Converter={StaticResource DoubleToGoalConverterKey}}"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="2" Grid.Column="0"
-                       Text="Weeks Until Goal: "/>
-                <Label Grid.Row="3" Grid.Column="1"
-                       Text="{Binding SevenDayWeight, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="3" Grid.Column="0"
-                       Text="Current Weight (7DayAvg): "/>
+            <Frame Padding="0" OutlineColor="LightGray">
+                <StackLayout Spacing="-1">
+                    <Frame OutlineColor="LightGray" Padding="10" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                            Text="Current TDEE: "
+                            VerticalOptions="Center"
+                            HorizontalOptions="StartAndExpand"/>
+                            <Label 
+                            Text="{Binding CurrentTdee, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </Frame>
 
-            </Grid>
+                    <Frame OutlineColor="LightGray" Padding="10" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                        Text="Target Daily Cal: "
+                                HorizontalOptions="StartAndExpand"/>
+                            <Label 
+                        Text="{Binding TargetCal, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
+                        VerticalOptions="Center"
+                                HorizontalOptions="EndAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame OutlineColor="LightGray" Padding="10" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                                   HorizontalOptions="StartAndExpand"
+                        Text="Weeks Until Goal: "/>
+                            <Label
+                                   HorizontalOptions="EndAndExpand"
+                        Text="{Binding WeeksToGoal, Converter={StaticResource DoubleToGoalConverterKey}}"
+                        VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame OutlineColor="LightGray" Padding="10" CornerRadius="0">
+                        <StackLayout Orientation="Horizontal">
+                            <Label 
+                                   HorizontalOptions="StartAndExpand"
+                        Text="Current Weight (7DayAvg): "/>
+                            <Label 
+                                   HorizontalOptions="EndAndExpand"
+                        Text="{Binding SevenDayWeight, Converter={StaticResource FloatTo2DecimalPlaceConverterKey}}"
+                        VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    
+                </StackLayout>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

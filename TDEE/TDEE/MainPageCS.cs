@@ -16,9 +16,13 @@ namespace TDEE
         {
             masterPage = new MasterPageCS();
             Master = masterPage;
-            Detail = new NavigationPage(new AddData());
+            Detail = new NavigationPage(new AddData())
+            {
+                Title = "TDEE Adaptive Calculator",
+                BarBackgroundColor = Color.DodgerBlue,
+                
+            };
             MasterBehavior = MasterBehavior.Popover;
-
             masterPage.ListView.ItemSelected += OnItemSelected;
         }
 
