@@ -12,50 +12,64 @@
     <ContentPage.Content>
         <StackLayout Padding="5">
             <Frame OutlineColor="LightGray">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Label VerticalOptions="Center"
-                       Text="Units"/>
-                <Switch Grid.Column="1"
-                        IsToggled="{Binding Metric, Mode=TwoWay}"
-                        VerticalOptions="Center"/>
-                <Label Grid.Column="2"
-                       Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}}"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="1"
-                       Text="Weeks in TDEE Avg"
-                       VerticalOptions="Center"/>
-                <Label Grid.Row="1" Grid.Column="1"
-                       VerticalOptions="Center"
-                       Text="{Binding WeeksInAvg}"
-                       HorizontalOptions="Center"/>
-                <Stepper Grid.Row="1" Grid.Column="2"
-                         VerticalOptions="Center"
-                         Value="{Binding WeeksInAvg}"/>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label VerticalOptions="Center"
+                           Text="Units"
+                           HorizontalOptions="StartAndExpand"/>
+                        <Switch
+                            IsToggled="{Binding Metric, Mode=TwoWay}"
+                            VerticalOptions="Center"
+                            HorizontalOptions="End"/>
+                        <Label Grid.Column="2"
+                           Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}}"
+                           VerticalOptions="Center"
+                           FontSize="Large"
+                           TextColor="Black"
+                           HorizontalOptions="End"/>
+                    </StackLayout>
 
-                <Label Grid.Row="2"
-                       VerticalOptions="Center"
-                       Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}, StringFormat='Cal per \{0\}'}"/>
-                <Entry Grid.Row="2" Grid.Column="2"
-                       VerticalOptions="Center"
-                       Keyboard="Numeric"
-                       Text="{Binding CaloriesPerUnit, Converter={StaticResource DoubleToStringConverterKey}}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                           Text="Weeks in TDEE Avg"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand"/>
+                        
+                        <Label
+                           VerticalOptions="Center"
+                           Text="{Binding WeeksInAvg}"
+                           FontSize="Large"
+                           TextColor="Black"
+                           HorizontalOptions="Center"/>
 
-                <Button Grid.Row="3" Grid.ColumnSpan="3"
-                        VerticalOptions="Center"
-                        Text="Reset to Defaults"
-                        HorizontalOptions="Fill"
-                        Command="{Binding ResetDefaults}"/>
-            </Grid>
+                        <Stepper
+                             VerticalOptions="Center"
+                             HorizontalOptions="End"
+                             Value="{Binding WeeksInAvg}"/>
+                    </StackLayout>
+
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="Center"
+                           Text="{Binding Metric, Converter={StaticResource BoolToUnitConverterKey}, StringFormat='Cal per \{0\}'}"/>
+                        <Entry 
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           Keyboard="Numeric"
+                           Text="{Binding CaloriesPerUnit, Converter={StaticResource DoubleToStringConverterKey}}"/>
+
+                    </StackLayout>
+
+                    <Button Grid.Row="3" Grid.ColumnSpan="3"
+                            VerticalOptions="Center"
+                            Text="Reset to Defaults"
+                            HorizontalOptions="Fill"
+                            BackgroundColor="DodgerBlue"
+                            TextColor="White"
+                            Command="{Binding ResetDefaults}"/>
+            </StackLayout>
             </Frame>
         </StackLayout>
     </ContentPage.Content>

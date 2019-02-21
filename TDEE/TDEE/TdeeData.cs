@@ -41,7 +41,7 @@ namespace TDEE
 
             sw.Reset();
             sw.Start();
-            AvgTdeeLineData = new AverageLineSeriesList(Weeks.List);
+            AvgTdeeLineData = new AverageLineSeriesList(UserSettings.WeeksInAvg, Weeks.List);
             sw.Stop();
             Console.WriteLine("Time to make average line series list: " + sw.ElapsedMilliseconds);
         }

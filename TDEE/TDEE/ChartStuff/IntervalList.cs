@@ -36,7 +36,7 @@ namespace TDEE
                 {
                     if (List.Count == 0)
                     {
-                        intervalGroup.Start = smallestDate.AddDays(-7);
+                        intervalGroup.Start = smallestDate.AddDays(-interval);
                     }
 
                     intervalGroup.Items.Add(item);

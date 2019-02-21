@@ -39,14 +39,14 @@ namespace TDEE
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Tdee Graph",
-                IconSource = "todo.png",
+                IconSource = "chart.png",
                 TargetType = typeof(TdeeGraph)
             });
 
             masterPageItems.Add(new MasterPageItem
             {
                 Title = "Weight Graph",
-                IconSource = "trash.svg",
+                IconSource = "chart.png",
                 TargetType = typeof(WeightGraph)
             });
 
@@ -57,12 +57,12 @@ namespace TDEE
                 TargetType = typeof(DeleteAll)
             });
 
-            masterPageItems.Add(new MasterPageItem
-            {
-                Title = "Add Bulk Data",
-                IconSource = "edit.png",
-                TargetType = typeof(BulkDataEntry)
-            });
+            //masterPageItems.Add(new MasterPageItem
+            //{
+            //    Title = "Add Bulk Data",
+            //    IconSource = "edit.png",
+            //    TargetType = typeof(BulkDataEntry)
+            //});
 
             masterPageItems.Add(new MasterPageItem
             {
@@ -95,7 +95,7 @@ namespace TDEE
                 SeparatorVisibility = SeparatorVisibility.None
             };
 
-            Icon = "hamburger.png";
+            Icon = "Hamburger.png";
             Title = "List";
             Content = new StackLayout
             {

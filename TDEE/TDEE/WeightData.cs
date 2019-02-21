@@ -17,7 +17,7 @@ namespace TDEE
         {
             Items = App.Items;
 
-            Intervals = new IntervalList(7, Items);
+            Intervals = new IntervalList(UserSettings.WeeksInAvg, Items);
 
             Weeks = new WeekList(Intervals.List);
 

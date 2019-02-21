@@ -33,7 +33,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Frame OutlineColor="LightGray">
+            <Frame OutlineColor="LightGray" IsVisible="{Binding ItemSelected}">
                 <StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label 

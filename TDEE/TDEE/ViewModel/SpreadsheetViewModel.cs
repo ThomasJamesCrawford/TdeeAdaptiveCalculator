@@ -37,6 +37,7 @@ namespace TDEE
             {
                 _selectedItem = value;
                 OnPropertyChanged("SelectedItem");
+                OnPropertyChanged("ItemSelected");
             }
         }
 
@@ -53,6 +54,7 @@ namespace TDEE
                 int r = task.Result;
                 App.UpdateItems();
                 RefreshItems();
+                SelectedItem = null;
             }
         }
 
@@ -63,6 +65,7 @@ namespace TDEE
                 Task<int> task = Task.Run(() => AsyncSaveSelectedItem());
                 int r = task.Result;
                 RefreshItems();
+                SelectedItem = null;
             }
         }
 
@@ -71,6 +74,14 @@ namespace TDEE
             get
             {
                 return UserSettings.Metric ? "KGS" : "LBS";
+            }
+        }
+
+        public bool ItemSelected
+        {
+            get
+            {
+                return SelectedItem != null;
             }
         }
 
@@ -87,6 +98,7 @@ namespace TDEE
         public SpreadsheetViewModel()
         {
             RefreshItems();
+            SelectedItem = null;
         }
 
         private void RefreshItems()

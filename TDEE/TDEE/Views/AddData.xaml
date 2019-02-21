@@ -9,9 +9,10 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Padding="5">
+        <StackLayout Padding="5" Spacing="10">
             <Frame Padding="0" OutlineColor="LightGray">
-                <StackLayout Spacing="-1">
+                <Frame Padding="0" OutlineColor="LightGray">
+                    <StackLayout Spacing="-1">
                     <Frame Padding="10, 5, 10, 0" CornerRadius="0">
                         <Label TextColor="Black" Text="Add Weight and/or Cals" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
                     </Frame>
@@ -66,8 +67,9 @@
                     Command="{Binding SubmitCommand}"/>
                         </StackLayout>
                     </Frame>
-
+                    
                 </StackLayout>
+            </Frame>
             </Frame>
 
             <Frame Padding="0" OutlineColor="LightGray">
