@@ -12,7 +12,17 @@ namespace TDEE
         public List<TodoItem> Items { get; set; }
         public WeekList Weeks { get; set; }
         public AverageLineSeriesList AvgTdeeLineData { get; set; }
-        public int Tdee { get => (int)AvgTdeeLineData.List.ElementAt(0).YNumeric; }
+        public int Tdee { get => getTdee(); }
+
+        private int getTdee()
+        {
+            if(AvgTdeeLineData.List.Count > 0)
+            {
+                return (int)AvgTdeeLineData.List.ElementAt(0).YNumeric;
+            }
+
+            return 0;
+        }
 
         public TdeeData()
         {
